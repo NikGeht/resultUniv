@@ -29,7 +29,7 @@ console.log(initialValue2, typeof(initialValue1));
 
 console.log('var является устаревшим');
 
-let isJavaScriptProgrammer1 = true;
+let isJavaScriptProgrammer1 = true; 
 let isJavaScriptProgrammer2 = false;
 isJavaScriptProgrammer2 = isJavaScriptProgrammer1;
 console.log(isJavaScriptProgrammer2, typeof(isJavaScriptProgrammer1));
@@ -39,3 +39,4 @@ let helloText2 = 'Привет!';
 
 helloText2 = helloText1;
 console.log(helloText2, typeof(helloText1));
+
