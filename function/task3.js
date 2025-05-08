@@ -7,19 +7,9 @@
 // }
 
 
-let getDivisorsCount = (number) => {
-    if (isNaN(number) || (typeof(number) !== 'number')) {
-        return NaN
-    }
-    if (number < 0 || !Number.isInteger(number)) {
-        alert(`${number} должен быть целым числом и больше нуля!`)
-    }
-    let countDivisors = 0
-    for (let i = 1; i <= number; i++) {
-        number % i === 0 ? countDivisors++ : countDivisors
-    }
-    return countDivisors
-}
+function highAndLow(numbers){
+    let arrNumbers = Array.from(numbers).map(x => Number.isInteger(Number(x)) ? x : '')
+    return `${Math.max(...arrNumbers)} ${Math.min(...arrNumbers)}`
+  }
 
-
-console.log(getDivisorsCount(30))
+  highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4")
