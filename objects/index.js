@@ -90,6 +90,8 @@ function handleObject(object, key, action, value) {
         case 'update':
             object[key] = value;
             return object;
+        default:
+            return object;
     }
 }
 
