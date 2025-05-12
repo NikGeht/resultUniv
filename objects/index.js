@@ -40,3 +40,34 @@ function getOnlineUsers(users) {
 
 console.log(getOnlineUsers(users))
 
+// Task 2
+
+console.log(`Task 2`);
+
+const ordersArr = [4, 2, 1, 3];
+const people = [
+   { id: 1, name: "Максим" },
+   { id: 2, name: "Николай" },
+   { id: 3, name: "Ангелина" },
+   { id: 4, name: "Виталий" },
+];
+
+function giveTalonsInOrder(people, ordersArr) {
+    let test = ordersArr.map((valueOrder) => {
+        return people.filter((name) => name.id === valueOrder)
+        // return people.find(name => name.id === valueOrder)
+    })
+    return test
+}
+ 
+const result = giveTalonsInOrder(people, ordersArr);
+console.log('result', result);
+/* Возвращает массив
+[
+   { id: 4, name: 'Виталий' },
+   { id: 2, name: 'Николай' },
+   { id: 1, name: 'Максим' },
+   { id: 3, name: 'Ангелина' }
+]
+*/
+
