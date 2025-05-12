@@ -40,6 +40,7 @@ function getOnlineUsers(users) {
 
 console.log(getOnlineUsers(users))
 
+
 // Task 2
 
 console.log(`Task 2`);
@@ -52,11 +53,22 @@ const people = [
    { id: 4, name: "Виталий" },
 ];
 
+// function giveTalonsInOrder(people, ordersArr) {
+//     let test = ordersArr.map((valueOrder) => {
+//         return people.filter((name) => name.id === valueOrder)
+//         // return people.find(name => name.id === valueOrder)
+//     })
+//     return test
+// }
+
+/*Попробовал применить навыки после урока про перебор в объектах, однако так и не понял, 
+почему нельзя использовать filter, find, map.
+*/
+
 function giveTalonsInOrder(people, ordersArr) {
-    let test = ordersArr.map((valueOrder) => {
-        return people.filter((name) => name.id === valueOrder)
-        // return people.find(name => name.id === valueOrder)
-    })
+    let test = ordersArr.map(valueOrder => {
+        return Object.values(people).filter((name) => name.id === valueOrder)
+    });
     return test
 }
  
@@ -103,3 +115,4 @@ const student = {
   
  const resultObj = handleObject(student, 'programmingLanguage', 'delete');
  console.log('result', resultObj); // { name: 'Maxim' }
+
