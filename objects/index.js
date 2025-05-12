@@ -67,7 +67,7 @@ const people = [
 
 function giveTalonsInOrder(people, ordersArr) {
     let test = ordersArr.map(valueOrder => {
-        return Object.values(people).filter((name) => name.id === valueOrder)
+        return Object.values(people).find((name) => name.id === valueOrder)
     });
     return test
 }
