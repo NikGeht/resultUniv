@@ -71,3 +71,33 @@ console.log('result', result);
 ]
 */
 
+// Task 3
+
+console.log(`Task 3`);
+
+function handleObject(object, key, action, value) {
+    switch(action) {
+        case 'get':
+            return object[key];
+        case 'add':
+            object[key] = ''
+            return object;
+        case 'delete':
+            delete object[key];
+            return object;
+
+        // добавлено поиграться
+        case 'update':
+            object[key] = value;
+            return object;
+    }
+}
+
+
+const student = {
+    name: 'Maxim',
+    programmingLanguage: 'JavaScript',
+ }
+  
+ const resultObj = handleObject(student, 'programmingLanguage', 'delete');
+ console.log('result', resultObj); // { name: 'Maxim' }
