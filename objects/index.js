@@ -67,10 +67,13 @@ const people = [
 
 function giveTalonsInOrder(people, ordersArr) {
     let test = ordersArr.map(valueOrder => {
-        return Object.values(people).find((name) => name.id === valueOrder)
+        return Object.values(people).filter((name) => {
+            return name.id === valueOrder})
     });
     return test
 }
+
+// 10
  
 const result = giveTalonsInOrder(people, ordersArr);
 console.log('result', result);
@@ -115,4 +118,36 @@ const student = {
   
  const resultObj = handleObject(student, 'programmingLanguage', 'delete');
  console.log('result', resultObj); // { name: 'Maxim' }
+
+ // Task 4
+
+ console.log(`Task 4`);
+
+function giveJobToStudent(student, newJob) {
+    // Судя по ТЗ - создать новый объект со студентом, поэтому использовал spread-оператор
+    let studentCopy = {
+        ...student
+    }
+    studentCopy['jobName'] = newJob;
+    console.log(`Поздравляем! У студента ${studentCopy.fullName} появилась новая работа! Теперь он ${studentCopy.jobName}`)
+    return studentCopy;
+}
+
+ const studentTask4 = {
+    fullName: 'Максим',
+    experienceInMonths: 12,
+    stack: ['HTML', 'CSS', 'JavaScript', 'React'],
+  }
+  
+  const updatedStudent = giveJobToStudent(studentTask4, 'веб-разработчик');
+  /*
+  updatedStudent = {
+      fullName: 'Максим',
+      experienceInMonths: 12,
+      stack: ['HTML', 'CSS', 'JavaScript', 'React'],
+      job: 'веб-разработчик',
+  }
+  */
+
+  console.log(updatedStudent)
 
