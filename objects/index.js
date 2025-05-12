@@ -151,3 +151,23 @@ function giveJobToStudent(student, newJob) {
 
   console.log(updatedStudent)
 
+  // Task 5
+console.log(`Task 5`)
+
+// Если у нас функция обязательно должна иметь два параметра, 
+// но при этом если их больше, чтобы считала
+
+// function sum(a, b, ...other) {
+//     return a + b + other.reduce((acc, num) => acc += num, 0);
+//   }
+
+// Эта функция удобна, так как при помощи REST и Reduce нам даже не нужно думать, переданы
+// ли вообще параметры, так как у acc начальное значение 0
+function sum(...nums) {
+    return nums.reduce((acc, num) => acc += num, 0)
+}
+
+  
+  console.log(sum(1, 2, 3)) // 6
+  console.log(sum(2, 2)) // 4
+  console.log(sum(10, 15, 249, 653, 846)) // 1773
