@@ -115,7 +115,7 @@ const student = {
     name: 'Maxim',
     programmingLanguage: 'JavaScript',
  }
-  
+
  const resultObj = handleObject(student, 'programmingLanguage', 'delete');
  console.log('result', resultObj); // { name: 'Maxim' }
 
@@ -171,3 +171,4 @@ function sum(...nums) {
   console.log(sum(1, 2, 3)) // 6
   console.log(sum(2, 2)) // 4
   console.log(sum(10, 15, 249, 653, 846)) // 1773
+
