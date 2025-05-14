@@ -167,10 +167,44 @@ console.log(
     )
   ); // Убийца Megan
 
-  // Task 4
-  console.log(`dopTask4`)
+// Task 4
+console.log(`dopTask4`)
+
+const todaysWinner = {
+    prize: '10 000$',
+ }
+  
+const winnerApplicants = {
+    '001': {
+        name: 'Максим',
+        age: 25,
+    },
+    '201': {
+        name: 'Светлана',
+        age: 20,
+    },
+    '304': {
+        name: 'Екатерина',
+        age: 35,
+    },
+}
+
+function getWinner(winnerApplicants, todaysWinner) {
+    const idPeople = Object.keys(winnerApplicants)
+    const indexWinner = getRandomNumberInRange(0, idPeople.length - 1)
+    
+    const peopleWinner = winnerApplicants[idPeople[indexWinner]]
+
+    return {
+        ...todaysWinner,
+        ...peopleWinner
+    };
+}
 
 
+const resultWinner = getWinner(winnerApplicants, todaysWinner);
+console.log('resultWinner', resultWinner); 
+// { prize: '10 000$', name: 'Максим', age: 25 }
 
 
 
