@@ -123,19 +123,25 @@ console.log(`dopTask3`)
 
 function getKiller(suspectInfo, deadPeople) {
     const suspectInfoArray = Object.entries(suspectInfo)
-    let deadPeopleCount = suspectInfoArray.map((elem) => {
-        return elem[1].reduce((acc, name) => {
-            if (deadPeople.indexOf(name) !== -1) {
-                return acc + 1
-            } else {
-                return acc
-            }
-        }, 0)
-    });
+    // let deadPeopleCount = suspectInfoArray.map((elem) => {
+    //     return elem[1].reduce((acc, name) => {
+    //         if (deadPeople.indexOf(name) !== -1) {
+    //             return acc + 1
+    //         } else {
+    //             return acc
+    //         }
+    //     }, 0)
+    // });
 
-    const idKiller =  deadPeopleCount.findIndex((value) => value === deadPeople.length)
+    // Более оптимизированный метод (по моему мнению)
 
-    return suspectInfoArray[idKiller][0]
+    return suspectInfoArray.map(([name, seen]) => {
+        return seen.filter(person => deadPeople.includes(person)).length === deadPeople.length ? name: null
+    }).filter(val => (val))[0]
+
+    // const idKiller =  deadPeopleCount.findIndex((value) => value === deadPeople.length)
+
+    // return suspectInfoArray[idKiller][0]
 }
 
 
@@ -159,7 +165,12 @@ console.log(
       },
       ["Ben"]
     )
-  ); 
+  ); // Убийца Megan
+
+  // Task 4
+  console.log(`dopTask4`)
+
+
 
 
 
