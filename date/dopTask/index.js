@@ -293,7 +293,7 @@ console.log(getAdultUsers(usersObject));
 */
 
 // Task 6
-console.log(`Task 6`)
+console.log(`dopTask 6`)
 
 const peopleWithVisa = [
   {
