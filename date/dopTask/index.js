@@ -292,5 +292,52 @@ console.log(getAdultUsers(usersObject));
 }
 */
 
+// Task 6
+console.log(`Task 6`)
 
+const peopleWithVisa = [
+  {
+      firstName: 'Stasia',
+      lastName: 'Ward',
+      criminalRecord: true,
+      passportExpiration: '19.06.2040',
+  },
+  {
+      firstName: 'Elliot',
+      lastName: 'Baker',
+      criminalRecord: false,
+      passportExpiration: '04.06.2041',
+  },
+  {
+      firstName: 'Leighann',
+      lastName: 'Scott',
+      criminalRecord: true,
+      passportExpiration: '31.07.2039',
+  },
+  {
+      firstName: 'Nick',
+      lastName: 'Pop',
+      criminalRecord: false,
+      passportExpiration: '31.12.2010',
+  },
+];
+
+function allowVisa(people) {
+    const currDate = Date.now()
+    const peopleWithAllowVisa = people.filter((person) => {
+        const [day, month, year] = person.passportExpiration.split('.')
+        const passportExpirationDate = new Date(year, Number(month) - 1, day).getTime()
+        if (passportExpirationDate - currDate < 0) {
+            return false
+        } else {
+            return true
+        }
+    })
+    
+    return peopleWithAllowVisa
+    
+}
+ 
+const result = allowVisa(peopleWithVisa);
+console.log('result', result);
 
