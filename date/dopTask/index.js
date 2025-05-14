@@ -55,21 +55,44 @@ const player = {
     }
 };
 
-const hero = {
-    ...player,
-    name: 'Batman',
-    heatEnemy: function(enemy) {
-        enemy.health = enemy.health - 10;
-    }
-}
+// const hero = {
+//     ...player,
+//     name: 'Batman',
+//     heatEnemy: function(enemy) {
+//         enemy.health = enemy.health - 10;
+//     }
+// }
 
-const enemy = {
-    ...player,
-    name: 'Joker',
-    heatHero: function(hero) {
-        hero.health = hero.health - 10;
-    }
-}
+const hero = Object.create(player, 
+    {
+        name: {
+            value: 'Batman'
+        },
+        heatEnemy: {
+            value: function(enemy) {
+                enemy.health -= 10;
+            }
+    }}
+)
+const enemy = Object.create(player, 
+    {
+        name: {
+            value: 'Test'
+        },
+        heatHero: {
+            value: function(hero) {
+                hero.health -= 10;
+            }
+    }}
+)
+
+// const enemy = {
+//     ...player,
+//     name: 'Joker',
+//     heatHero: function(hero) {
+//         hero.health = hero.health - 10;
+//     }
+// }
 
 function whosWinning(heroPlayer, enemyPlayer) {
     if(heroPlayer.health === 0) {
@@ -84,7 +107,7 @@ function startGame(heroPlayer, enemyPlayer) {
         let whosAttacking = getRandomNumberInRange(0, 1)
         whosAttacking === 1 ? heroPlayer.getHeat() : enemyPlayer.getHeat()
         // whosAttacking === 1 ? enemyPlayer.heatHero(heroPlayer) : heroPlayer.heatEnemy(enemyPlayer)
-        
+
         // Оставил для ТЗ, если мой вариант будет считаться неправильным. Посчитал, что излишне будет давать каждому, что он бьет кого-то, если они получают урон в принципе. и это можно сделать в родительском объекте (так скажем).
     }
 
@@ -94,5 +117,49 @@ function startGame(heroPlayer, enemyPlayer) {
 }
 
 startGame(hero, enemy)
+
+// Task 3
+console.log(`dopTask3`)
+
+function getKiller(suspectInfo, deadPeople) {
+    const suspectInfoArray = Object.entries(suspectInfo)
+    let deadPeopleCount = suspectInfoArray.map((elem) => {
+        return elem[1].reduce((acc, name) => {
+            if (deadPeople.indexOf(name) !== -1) {
+                return acc + 1
+            } else {
+                return acc
+            }
+        }, 0)
+    });
+
+    const idKiller =  deadPeopleCount.findIndex((value) => value === deadPeople.length)
+
+    return suspectInfoArray[idKiller][0]
+}
+
+
+console.log(
+    getKiller(
+      {
+        James: ["Jacob", "Bill", "Lucas"],
+        Johnny: ["David", "Kyle", "Lucas"],
+        Peter: ["Lucy", "Kyle"]
+      },
+      ["Lucas", "Bill"]
+    )
+  ); // Убийца James
+  
+  console.log(
+    getKiller(
+      {
+        Brad: [],
+        Megan: ["Ben", "Kevin"],
+        Finn: []
+      },
+      ["Ben"]
+    )
+  ); 
+
 
 
