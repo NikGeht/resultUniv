@@ -1,4 +1,4 @@
-// dopTask 1
+// Task 1
 console.log(`dopTask1`)
 
 const groceries = {
@@ -39,3 +39,60 @@ const groceries = {
   
   const totalPrice = getTotalPriceOfShoppingBag(shoppingBag);
   console.log("totalPrice", totalPrice); // Возвращает 50.05
+
+// Task 2
+console.log(`dopTask2`)
+
+function getRandomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
+
+const player = {
+    name: '',
+    health: 100,
+    getHeat: function(){
+        this.health = this.health - 10;
+    }
+};
+
+const hero = {
+    ...player,
+    name: 'Batman',
+    heatEnemy: function(enemy) {
+        enemy.health = enemy.health - 10;
+    }
+}
+
+const enemy = {
+    ...player,
+    name: 'Joker',
+    heatHero: function(hero) {
+        hero.health = hero.health - 10;
+    }
+}
+
+function whosWinning(heroPlayer, enemyPlayer) {
+    if(heroPlayer.health === 0) {
+        return `${enemyPlayer.name} победил! У него осталось ${enemyPlayer.health} здоровья!`;
+    } else {
+        return `${heroPlayer.name} победил! У него осталось ${heroPlayer.health} здоровья!`;
+    }
+}
+
+function startGame(heroPlayer, enemyPlayer) {
+    while (heroPlayer.health !== 0 && enemyPlayer.health !== 0) {
+        let whosAttacking = getRandomNumberInRange(0, 1)
+        whosAttacking === 1 ? heroPlayer.getHeat() : enemyPlayer.getHeat()
+        // whosAttacking === 1 ? enemyPlayer.heatHero(heroPlayer) : heroPlayer.heatEnemy(enemyPlayer)
+        
+        // Оставил для ТЗ, если мой вариант будет считаться неправильным. Посчитал, что излишне будет давать каждому, что он бьет кого-то, если они получают урон в принципе. и это можно сделать в родительском объекте (так скажем).
+    }
+
+    console.log(whosWinning(heroPlayer, enemyPlayer))
+
+    
+}
+
+startGame(hero, enemy)
+
+
