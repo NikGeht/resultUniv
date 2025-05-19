@@ -327,11 +327,7 @@ function allowVisa(people) {
     const peopleWithAllowVisa = people.filter((person) => {
         const [day, month, year] = person.passportExpiration.split('.')
         const passportExpirationDate = new Date(year, Number(month) - 1, day).getTime()
-        if (passportExpirationDate - currDate > 0 && !person.criminalRecord) {
-            return true
-        } else {
-            return false
-        }
+        return passportExpirationDate - currDate > 0 && !person.criminalRecord
     })
     
     return peopleWithAllowVisa
@@ -340,4 +336,3 @@ function allowVisa(people) {
  
 const result = allowVisa(peopleWithVisa);
 console.log('result', result);
-
