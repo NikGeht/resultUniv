@@ -6,8 +6,12 @@ class CarService {
 
     constructor(name, workingHours) {
         this.name = name;
-        let validWorkingHours = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
-        if (workingHours['from'] && workingHours['till'] && workingHours['from'].match(validWorkingHours) && workingHours['till'].match(validWorkingHours)) {
+        const validWorkingHours = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
+
+        const { from, till } = workingHours || CarService.DefaultWorkingHours;
+        const isGoodTime = date => date && validWorkingHours.test(date);
+
+        if (isGoodTime(from) && isGoodTime(till)) {
             this.workingHours = workingHours
         } else {
             this.workingHours = CarService.DefaultWorkingHours;
@@ -20,8 +24,8 @@ class CarService {
             return;
         } else {
             const currHours = new Date().getHours();
-            const workingHoursFrom = this.workingHours.from.split(":")[0];
-            const workingHoursTill = this.workingHours.till.split(":")[0];
+            const workingHoursFrom = Number(this.workingHours.from.split(":")[0]);
+            const workingHoursTill = Number(this.workingHours.till.split(":")[0]);
             
             if (currHours >= workingHoursFrom && currHours < workingHoursTill) {
                 console.log(`Сейчас отремонтируем вашу машину ${carName}! Ожидайте пожалуйста`);
@@ -32,5 +36,5 @@ class CarService {
         }
     }
 }
-const carService = new CarService('RepairCarNow', { from: 'aa:00', till: '20:00' });
+const carService = new CarService('RepairCarNow', { from: '9:00', till: '20:00' });
 carService.repairCar('BMW');
