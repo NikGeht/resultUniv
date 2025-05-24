@@ -21,5 +21,7 @@ const dog = {
 
  makeDomestic.call(dog, true);
  makeDomestic.apply(bird, [false]);
+ const makeDomesticBind = makeDomestic.bind(dog, [true])
+ makeDomesticBind();
  
  
