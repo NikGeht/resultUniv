@@ -182,20 +182,25 @@ function createBlockModalDelete() {
 
 // ТЕМНАЯ ТЕМА
 
+/*
+Но мне кажется лучше было бы добавить нужным элементам класс dark-theme и таким образом все делать, а с кода убрать явную стилизацию.
+*/
+
 function changeTheme(event) {
     if (event.key === 'Tab'){
         const body = document.querySelector('body');
         
-        const allTaskItems = document.querySelector('.tasks-list').querySelectorAll('*');
+        const allTaskItems = document.querySelectorAll('.tasks-item, .task-item *')
         const allButtons = document.querySelectorAll('button');
         console.log(allTaskItems);
-        if (body.dataset.theme === 'light'){
+        body.dataset.theme === 'light' ? body.dataset.theme = 'dark' : body.dataset.theme = 'light';
+        if (body.dataset.theme === 'dark'){
             body.style.background = '#24292E';
             allTaskItems.forEach((task) => {
                 task.style.color = '#ffffff';
             });
             allButtons.forEach((button) => button.style.border = '1px solid #ffffff')
-        } else if (body.dataset.theme === 'dark') {
+        } else if (body.dataset.theme === 'light') {
             document.querySelector('body').style.background = 'initial';
             allTaskItems.forEach((task) => {
                 task.style.color = 'initial';
@@ -203,7 +208,7 @@ function changeTheme(event) {
             allButtons.forEach((button) => button.style.border = 'none')
         }
 
-        body.dataset.theme === 'light' ? body.dataset.theme = 'dark' : body.dataset.theme = 'light';
+        
     }
 }
 
