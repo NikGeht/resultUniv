@@ -16,6 +16,8 @@ const tasks = [
     },
 ];
 
+// ФОРМИРОВАНИЕ БЛОКОВ ЗАДАЧ, ДОБАВЛЕНИЕ, УДАЛЕНИЕ БЛОКОВ
+
 function createTasks(tasks) {
     tasks.forEach((task) => {
         createTaskHTML(task.id, task.completed, task.text);
@@ -69,7 +71,7 @@ function createTaskHTML(id, completed, text) {
 
     const tasksList = document.querySelector('.tasks-list');
     tasksList.append(taskItem);
-
+    
 }
 
 function getUniqueId() {
@@ -95,6 +97,26 @@ function addNewTask() {
 
 }
 
+function deleteTask() {
+    const isDeleteButton = event.target.className.includes('task-item__delete-button');
+    if (isDeleteButton) {
+        const currentTask = event.target.closest('.task-item');
+        const taskId = currentTask.dataset.taskId;
+        
+        showBlockModalDelete(taskId);
+    }
+}
+/*Что-то я не знаю, оно работает, но меня напрягает, 
+что я получается между коллбэками прокидываю taskId
+Хотя по хорошему, если функция названа deleteTask, то там и удалять.
+
+Я сначала сделал, что в коллбэке deleteTask объявлял коллбэк на модальное окно,
+но там получается небольшое зацикливание происходит и это неправильно. Сейчас лучше, но мне не нравится костыльность.
+
+*/
+
+// ВАЛИДАЦИЯ И ОШИБКА
+
 function validateTask(id, inputTaskText) {
     document.querySelectorAll('.error-message-block')?.forEach(block => block.remove());
     const isValidTask = tasks.every((task) => task?.id !== id && task?.text !== inputTaskText);
@@ -116,7 +138,83 @@ function errorSpan(text) {
     form.append(errorBlock);
 }
 
+// МОДАЛЬНОЕ ОКНО
+
+function handleModalClick(event) {
+    const modalWindow = document.querySelector('.modal-overlay');
+    const taskId = modalWindow.dataset.taskId;
+    if (event.target.className.includes('delete-modal__cancel-button')) {
+        modalWindow.classList.add('modal-overlay_hidden');
+    } else if (event.target.className.includes('delete-modal__confirm-button')) {
+        const taskIndex = tasks.findIndex((task) => task.id === taskId);
+        document.querySelector(`[data-task-id="${taskId}"]`)?.remove();
+        tasks.splice(taskIndex, 1);
+        console.log(taskIndex);
+        modalWindow.classList.add('modal-overlay_hidden');
+    }
+}
+
+function showBlockModalDelete(taskId) {
+    modalWindow.classList.remove('modal-overlay_hidden');
+    modalWindow.dataset.taskId = taskId;
+    console.log(modalWindow);
+}
+
+function createBlockModalDelete() {
+    const modalDeleteHTML = document.createElement('div');
+    modalDeleteHTML.className = 'modal-overlay modal-overlay_hidden';
+    modalDeleteHTML.innerHTML = `<div class="delete-modal">
+        <h3 class="delete-modal__question">
+            Вы действительно хотите удалить эту задачу?
+        </h3>
+        <div class="delete-modal__buttons">
+            <button class="delete-modal__button delete-modal__cancel-button">
+                Отмена
+            </button>
+            <button class="delete-modal__button delete-modal__confirm-button">
+                Удалить
+            </button>
+        </div>
+    </div>`;
+    
+    return modalDeleteHTML;
+}
+
+// ТЕМНАЯ ТЕМА
+
+function changeTheme(event) {
+    if (event.key === 'Tab'){
+        const body = document.querySelector('body');
+        
+        const allTaskItems = document.querySelector('.tasks-list').querySelectorAll('*');
+        const allButtons = document.querySelectorAll('button');
+        console.log(allTaskItems);
+        if (body.dataset.theme === 'light'){
+            body.style.background = '#24292E';
+            allTaskItems.forEach((task) => {
+                task.style.color = '#ffffff';
+            });
+            allButtons.forEach((button) => button.style.border = '1px solid #ffffff')
+        } else if (body.dataset.theme === 'dark') {
+            document.querySelector('body').style.background = 'initial';
+            allTaskItems.forEach((task) => {
+                task.style.color = 'initial';
+            });
+            allButtons.forEach((button) => button.style.border = 'none')
+        }
+
+        body.dataset.theme === 'light' ? body.dataset.theme = 'dark' : body.dataset.theme = 'light';
+    }
+}
+
 createTasks(tasks);
+document.querySelector('body').dataset.theme = 'light';
+document.addEventListener('keyup', changeTheme);
 
 const form = document.querySelector('.create-task-block');
 form.addEventListener('submit',  addNewTask);
+const itemList = document.querySelector('.tasks-list')
+itemList.addEventListener('click', deleteTask)
+document.querySelector('.tasks-list').append(createBlockModalDelete());
+const modalWindow = document.querySelector('.modal-overlay');
+modalWindow.addEventListener('click', handleModalClick);
