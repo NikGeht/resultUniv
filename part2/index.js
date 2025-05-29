@@ -191,13 +191,14 @@ function changeTheme(event) {
     if (event.key === 'Tab'){
         const body = document.querySelector('body');
         
-        const allTaskItems = document.querySelectorAll('.tasks-item, .task-item *')
+        const allTaskItems = document.querySelectorAll('.task-item')
         const allButtons = document.querySelectorAll('button');
         console.log(allTaskItems);
         body.dataset.theme === 'light' ? body.dataset.theme = 'dark' : body.dataset.theme = 'light';
         if (body.dataset.theme === 'dark'){
             body.style.background = '#24292E';
             allTaskItems.forEach((task) => {
+                console.log(task);
                 task.style.color = '#ffffff';
             });
             allButtons.forEach((button) => button.style.border = '1px solid #ffffff')
