@@ -220,6 +220,6 @@ const form = document.querySelector('.create-task-block');
 form.addEventListener('submit',  addNewTask);
 const itemList = document.querySelector('.tasks-list')
 itemList.addEventListener('click', deleteTask)
-document.querySelector('.tasks-list').append(createBlockModalDelete());
+document.querySelector('body').append(createBlockModalDelete());
 const modalWindow = document.querySelector('.modal-overlay');
 modalWindow.addEventListener('click', handleModalClick);
