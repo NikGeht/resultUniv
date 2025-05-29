@@ -152,6 +152,7 @@ function handleModalClick(event) {
         console.log(taskIndex);
         modalWindow.classList.add('modal-overlay_hidden');
     }
+    modalWindow.removeAttribute('data-task-id');
 }
 
 function showBlockModalDelete(taskId) {
