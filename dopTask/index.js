@@ -20,33 +20,34 @@ class CustomSelect {
         return block;
     }
     #bindElements () {
-        const dropDownButton = document.querySelector('.select-dropdown__button')
+        const dropDownButton = document.querySelector(`.select-dropdown__button--${this.#id}`)
         dropDownButton.addEventListener('click', (e) => {
-            document.querySelector('.select-dropdown__list').classList.toggle('active');
+            document.querySelector(`.select-dropdown__list--${this.#id}`).classList.toggle('active');
             e.stopPropagation();
             
         })
         const body = document.querySelector('body');
         body.addEventListener('click', (e) => {
-            if (!e.target.classList.contains('select-dropdown__list-item' || !e.target.classList.contains('select-dropdown__button'))) {
-                document.querySelector('.select-dropdown__list').classList.remove('active');
+            if (!e.target.classList.contains(`select-dropdown__list-item--${this.#id}` || !e.target.classList.contains(`select-dropdown__button--${this.#id}`))) {
+                document.querySelector(`.select-dropdown__list--${this.#id}`).classList.remove('active');
             }
         })
-        const dropDownList = document.querySelector('.select-dropdown__list');
+        const dropDownList = document.querySelector(`.select-dropdown__list--${this.#id}`);
         dropDownList.addEventListener('click', (e) => {
 
-            document.querySelectorAll('.select-dropdown__list-item').forEach((item) => {
+            document.querySelector(`.select-dropdown__list--${this.#id}`).querySelectorAll(`.select-dropdown__list-item`).forEach((item) => {
                 item.classList.remove('selected');
             })
 
             const idItem = e.target.dataset.value;
             this.#currentSelectedOption = idItem;
 
-            const dropDownText = document.querySelector('.select-dropdown__text');
+            const dropDownText = document.querySelector(`.select-dropdown__text--${this.#id}`);
             dropDownText.innerText = e.target.innerText;
 
             e.target.classList.add('selected');
             console.log(this.getCurrentSelectedOption);
+            e.stopPropagation();
         })
     }
     #createListItemsFromOptions() {
@@ -89,6 +90,16 @@ const options = [
     { value: 5, text: 'CSS' }
 ];
 
+const options1 = [
+    { value: 1, text: 'asd' },
+    { value: 2, text: 'asq' },
+    { value: 3, text: 'rrrr' },
+    { value: 4, text: 'eeee' },
+    { value: 5, text: 'CSS' }
+];
+
 const customSelect = new CustomSelect('123', options);
-const mainContainer = document.querySelector('#container'); 
+const customSelect1 = new CustomSelect('125', options1);
+const mainContainer = document.querySelector('#container');
 customSelect.render(mainContainer);
+customSelect1.render(mainContainer);
