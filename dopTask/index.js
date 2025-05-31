@@ -28,7 +28,10 @@ class CustomSelect {
         })
         const body = document.querySelector('body');
         body.addEventListener('click', (e) => {
-            if (!e.target.classList.contains(`select-dropdown__list-item--${this.#id}` || !e.target.classList.contains(`select-dropdown__button--${this.#id}`))) {
+            if (
+                !e.target.closest(`.select-dropdown__list--${this.#id}`) && // Клик не по списку или его потомку
+                !e.target.closest(`.select-dropdown__button--${this.#id}`) // Клик не по кнопке или ее потомку
+            ) {
                 document.querySelector(`.select-dropdown__list--${this.#id}`).classList.remove('active');
             }
         })
