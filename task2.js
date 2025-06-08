@@ -59,19 +59,10 @@ function createTaskHTML(id, completed, text) {
     checkBoxFormInput.type = 'checkbox';
     checkBoxFormInput.id = id;
 
-    console.log(completed)
     if (completed) {
         checkBoxFormInput.checked = true;
     }
 
-    checkBoxFormInput.addEventListener('click', () =>{
-        tasks.forEach((task) => {
-            if (task.id === checkBoxFormInput.id) {
-                task.completed = !task.completed;
-            };
-        })
-        console.log(tasks);
-    })
     const checkBoxFormLabel = document.createElement('label');
     checkBoxFormLabel.htmlFor = id;
     checkBoxForm.append(checkBoxFormInput, checkBoxFormLabel);
@@ -87,12 +78,6 @@ function createTaskHTML(id, completed, text) {
     taskItemDeleteButton.classList.add('default-button')
     taskItemDeleteButton.classList.add('delete-button')
     taskItemDeleteButton.innerText = 'Удалить';
-    taskItemDeleteButton.addEventListener('click', () => {
-        document.querySelector(`[data-task-id="${id}"]`).remove();
-        const index = tasks.findIndex((task) => task.id === id);
-        tasks.splice(index, 1);
-        console.log(tasks)
-    })
 
 
     taskItemContent.append(checkBoxForm, taskItemText);
@@ -101,7 +86,7 @@ function createTaskHTML(id, completed, text) {
 
     const tasksList = document.querySelector('.tasks-list');
     tasksList.append(taskItem);
-
+    
 }
 
 function generateUniqueId(tasks) {
@@ -113,8 +98,8 @@ function generateUniqueId(tasks) {
 }
 
 createTasks(tasks);
-const addTaskButton = document.querySelector('.create-task-block__button.default-button');
-addTaskButton.addEventListener('click', (event) => {
+const addTaskButton = document.querySelector('.create-task-block');
+addTaskButton.addEventListener('submit', (event) => {
     event.preventDefault();
     const id = generateUniqueId(tasks);
     const inputName = document.querySelector('input[name="taskName"]');
