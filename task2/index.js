@@ -16,11 +16,11 @@ const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos';
 
 async function getTodosByIds(ids) {
     try {
-        const requests = ids.map(async (id) => {
-            return await fetch(`${TODOS_URL}/${id}`);
+        const requests = ids.map((id) => {
+            return fetch(`${TODOS_URL}/${id}`);
         });
         const responses = await Promise.all(requests);
-        const dataResults = responses.map(async (data) => await data.json());
+        const dataResults = responses.map((data) => data.json());
         const allTasks = await Promise.all(dataResults);
         console.log(allTasks);
     } catch (error) {
