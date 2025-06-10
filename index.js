@@ -18,9 +18,6 @@ function createPostElement(title, text, comments) {
     headerComment.textContent = "Комментарии";
 
     const commentsContainer = createCommentsElement(comments);
-    if (!commentsContainer) {
-        return null;
-    }
 
     postElement.append(titlePost, textPost, headerComment, commentsContainer);
 
@@ -28,9 +25,6 @@ function createPostElement(title, text, comments) {
 }
 
 function createCommentsElement(comments) {
-    if (!Array.isArray(comments)) {
-        return null;
-    }
     const commentsContainer = document.createElement("div");
     commentsContainer.className = "post__comments";
 
@@ -96,9 +90,7 @@ async function renderPost(postId) {
             throw new Error("Не удалось получить данные поста");
         }
         const postElement = createPostElement(title, body, comments);
-        if (!postElement) {
-            throw new Error("Не удалось создать элемент поста");
-        }
+        
         document.body.append(postElement);
     } catch (error) {
         console.error(error);
