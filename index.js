@@ -80,14 +80,24 @@ async function getPostWithComments(postId) {
 }
 
 async function renderPost(postId) {
-    
-    const { post, comments } = await getPostWithComments(postId);
 
-    const { title, body } = post;
-
-    const postElement = createPostElement(title, body, comments);
+    try {
     
-    document.body.append(postElement);
+        const { post, comments } = await getPostWithComments(postId);
+
+        if (!post || !comments) {
+            throw new Error("Пост или комментарии не найдены");
+        }
+
+        const { title, body } = post;
+
+        const postElement = createPostElement(title, body, comments);
+        
+        document.body.append(postElement);
+
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 renderPost(1);
