@@ -19,7 +19,6 @@ const dog = {
     console.log(`${this.type} по имени ${this.name} говорит ${this.makeSound()}`);
     return {
       ...this,
-      isDomestic: isDomestic,
     }
  }
 makeDomestic.call(dog, true);
