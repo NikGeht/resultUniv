@@ -51,6 +51,9 @@ async function fetchingUrl(url) {
         const request = await fetch(url, {
             method: "GET",
         });
+        if (!request.ok) {
+            throw new Error('Данные не были получены');
+        }
         const response = await request.json();
 
         return response;
