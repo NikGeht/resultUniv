@@ -56,7 +56,6 @@ async function fetchingUrl(url) {
         return response;
     } catch (error) {
         console.error(error);
-        return null;
     }
 }
 
@@ -74,28 +73,18 @@ async function getPostWithComments(postId) {
         return { post, comments };
     } catch (error) {
         console.error(error);
-        return null;
     }
 }
 
 async function renderPost(postId) {
-    try {
-        const { post, comments } = await getPostWithComments(postId);
+    
+    const { post, comments } = await getPostWithComments(postId);
 
-        if (!post || !comments) {
-            throw new Error("Не удалось получить пост или комментарии");
-        }
-        const { title, body } = post;
-        if (!title || !body) {
-            throw new Error("Не удалось получить данные поста");
-        }
-        const postElement = createPostElement(title, body, comments);
-        
-        document.body.append(postElement);
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+    const { title, body } = post;
+
+    const postElement = createPostElement(title, body, comments);
+    
+    document.body.append(postElement);
 }
 
 renderPost(1);
