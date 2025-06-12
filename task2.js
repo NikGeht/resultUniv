@@ -15,10 +15,11 @@ const dog = {
  }
 
  function makeDomestic(isDomestic) {
-    this.isDomestic = isDomestic;
+    //this.isDomestic = isDomestic;
     console.log(`${this.type} по имени ${this.name} говорит ${this.makeSound()}`);
     return {
       ...this,
+      isDomestic: isDomestic,
     }
  }
 makeDomestic.call(dog, true);
