@@ -1,0 +1,23 @@
+{
+  "name": "resultuniv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikGeht/resultUniv.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NikGeht/resultUniv/issues"
+  },
+  "homepage": "https://github.com/NikGeht/resultUniv#readme"
+}
