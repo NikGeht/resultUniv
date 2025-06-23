@@ -29,7 +29,6 @@ export class List extends Component {
 
 	handleClick(event) {
 		if (event.target.classList.contains('delete-button')) {
-			
 			const item = event.target.closest('.donate-item');
 			this.props.onDelete(item.dataset.id);
 			item.remove();
