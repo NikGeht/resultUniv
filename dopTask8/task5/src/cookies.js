@@ -21,8 +21,14 @@ export function showCookieConsent() {
 
 /**
  * @description Проверяет, была ли нажата кнопка в локальном хранилище
- * @returns {string | null}
+ * @returns {boolean}
  */
 export function checkButtonInLocalStorage() {
-    return JSON.parse(localStorage.getItem(COOKIE_CONSENT_KEY));
+    try {
+        const state = localStorage.getItem(COOKIE_CONSENT_KEY);
+        return JSON.parse(state) === 'true';
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 }
