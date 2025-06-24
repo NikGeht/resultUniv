@@ -1,8 +1,13 @@
-console.log(isEqualSymbols('адрес', 'среда')) // true 
+console.log(isEqualSymbols('адрес', 'среда')) // true
 console.log(isEqualSymbols('ноутбук', 'программист')) // false 
 
 function isEqualSymbols(str1, str2) { 
-    const arr1 = str1.split('');
-    const arr2 = str2.split('');
-    return arr1.every(char => arr2.includes(char));
+    const setStr1 = new Set(str1);
+    const setStr2 = new Set(str2);
+    console.log(setStr1, setStr2);
+    if (setStr1.size !== setStr2.size) {
+        return false;
+    } else {
+        return setStr1.has(...setStr2);
+    }
 }
