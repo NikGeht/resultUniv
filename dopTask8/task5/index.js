@@ -7,6 +7,10 @@ import {
 } from "./src/cookies";
 import { BUTTON_CLASS } from "./src/constants";
 
+/**
+ * @description Запускает приложение
+ * @returns {void}
+ */
 function runApp() {
     initState();
 
