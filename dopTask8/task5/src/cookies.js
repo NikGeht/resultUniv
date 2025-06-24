@@ -26,7 +26,7 @@ export function showCookieConsent() {
 export function checkButtonInLocalStorage() {
     try {
         const state = localStorage.getItem(COOKIE_CONSENT_KEY);
-        return JSON.parse(state) === 'true';
+        return state === 'true';
     } catch (error) {
         console.error(error);
         return false;

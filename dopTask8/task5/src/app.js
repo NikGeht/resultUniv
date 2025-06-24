@@ -8,7 +8,6 @@ import { BUTTON_CLASS } from "./constants";
  */
 export function runApp() {
     initState();
-
     if (checkButtonInLocalStorage()) {
         hideCookieConsent();
     } else {
