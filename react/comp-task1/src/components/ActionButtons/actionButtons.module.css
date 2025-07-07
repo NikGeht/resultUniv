@@ -1,0 +1,16 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.2rem;
+	margin: 2rem 0 1.5rem 0;
+	flex-wrap: wrap;
+}
+
+.container > * {
+	transition: transform 0.12s;
+}
+
+.container > *:hover {
+	transform: translateY(-2px) scale(1.04);
+}

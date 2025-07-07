@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import './App.css';
-import { Button } from './components/button/button';
 import { List } from './components/list/list';
 import { Title } from './components/title/Title';
 import { Error } from './components/error/error';
+import { ActionButtons } from './components/ActionButtons/ActionButtons';
 
 function App() {
 	const isValueVaild = (text) => {
@@ -49,14 +49,12 @@ function App() {
 		<div className="app">
 			<Title value={value}></Title>
 			{error !== '' && <Error value={error} />}
-			<div className="buttons-container">
-				<Button value="Ввести новое" onClick={onInputButtonClick}></Button>
-				<Button
-					value="Добавить в список"
-					onClick={onAddButtonClick}
-					disabled={!isValueVaild(value)}
-				></Button>
-			</div>
+			<ActionButtons
+				onAddButtonClick={onAddButtonClick}
+				onInputButtonClick={onInputButtonClick}
+				value={value}
+				isValueVaild={isValueVaild(value)}
+			/>
 			<List header="Список:" data={list}></List>
 		</div>
 	);
