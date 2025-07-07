@@ -1,0 +1,23 @@
+.header {
+	margin: 0 0 1rem;
+	font-size: 2.2rem;
+	font-weight: bold;
+	background: linear-gradient(90deg, #8f5cf7 0%, #6c2eb7 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-shadow: 0 2px 8px rgba(108, 46, 183, 0.1);
+	letter-spacing: 1px;
+}
+
+.noMarginText {
+	margin: 0;
+	font-size: 1.1rem;
+	color: #6c2eb7;
+}
+
+.currentValue {
+	font-weight: bold;
+	color: #8f5cf7;
+	font-size: 1.15rem;
+}

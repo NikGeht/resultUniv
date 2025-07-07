@@ -1,0 +1,31 @@
+.button {
+	padding: 0.6em 1.2em;
+	background: linear-gradient(90deg, #8f5cf7 0%, #6c2eb7 100%);
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: 500;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(108, 46, 183, 0.1);
+	cursor: pointer;
+	transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+	outline: none;
+}
+
+.button:hover:not(:disabled) {
+	background: linear-gradient(90deg, #a084e8 0%, #6c2eb7 100%);
+	box-shadow: 0 4px 16px rgba(108, 46, 183, 0.18);
+	transform: translateY(-2px) scale(1.03);
+}
+
+.button:active:not(:disabled) {
+	background: linear-gradient(90deg, #6c2eb7 0%, #8f5cf7 100%);
+	transform: scale(0.98);
+}
+
+.button:disabled {
+	background: #e0d7f7;
+	color: #b3a6d9;
+	cursor: not-allowed;
+	box-shadow: none;
+}
