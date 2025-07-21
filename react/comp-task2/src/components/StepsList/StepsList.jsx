@@ -16,7 +16,6 @@ export const StepsList = ({ steps, activeIndex, handlerButtonStepClick }) => {
 						}
 					>
 						<button
-							key={step.id}
 							className={styles['steps-item-button']}
 							onClick={handlerButtonStepClick}
 						>
