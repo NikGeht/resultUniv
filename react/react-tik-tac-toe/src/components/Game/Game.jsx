@@ -40,7 +40,6 @@ export const Game = () => {
 	function processGameTurn() {
 		if (isGameEnded) return;
 		const isFieldFull = field.every((value) => value !== '');
-		const isFieldEmpty = field.every((value) => value === '');
 		const isCurrentPlayerWinner = WIN_PATTERNS.some((indexes) =>
 			indexes.every((value) => field[value] === currentPlayer),
 		);
@@ -55,10 +54,11 @@ export const Game = () => {
 			setIsDraw(true);
 			return;
 		}
-		if (!isFieldEmpty) setCurrentPlayer((prev) => (prev === 'X' ? 'O' : 'X'));
+		setCurrentPlayer((prev) => (prev === 'X' ? 'O' : 'X'));
 	}
 
 	useEffect(() => {
+		if (field.every((value) => value === '')) return;
 		processGameTurn();
 	}, [field]);
 
