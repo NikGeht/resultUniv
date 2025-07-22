@@ -1,0 +1,46 @@
+.game__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__field {
+		display: grid;
+		grid-template-columns: repeat(3, 60px);
+		grid-template-rows: repeat(3, 60px);
+
+		background: transparent;
+		box-shadow: none;
+		border: 5px solid rgba(37, 99, 235, 0.08);
+
+		button {
+			background: #fff;
+			border: 1.5px solid #e5e7eb;
+
+			font-size: 2rem;
+			font-weight: 500;
+			color: #222;
+			transition:
+				border-color 0.2s,
+				box-shadow 0.2s;
+			cursor: pointer;
+			outline: none;
+
+			&:hover:not(:disabled) {
+				border-color: #2563eb;
+				box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+			}
+
+			&:disabled {
+				color: #bbb;
+				background: #f3f4f6;
+				cursor: not-allowed;
+			}
+			&.X {
+				color: brown;
+			}
+			&.O {
+				color: #2563eb;
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.button {
+	display: flex;
+	align-items: center;
+	margin: 2rem auto;
+	background: #2563eb;
+	color: #fff;
+	border: none;
+	padding: 1rem 2rem;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.2s;
+
+	&:hover {
+		background: #1d4ed8;
+	}
+}

@@ -1,0 +1,24 @@
+.start-game {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+
+	&__title {
+		font-size: 2.2rem;
+	}
+
+	&__button {
+		background: #2563eb;
+		color: #fff;
+		border: none;
+		padding: 1rem 2rem;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background 0.2s;
+
+		&:hover {
+			background: #1d4ed8;
+		}
+	}
+}
