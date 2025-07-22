@@ -37,11 +37,11 @@ export const Game = () => {
 		setIsGameStarted(true);
 	};
 
-	function processGameTurn() {
+	function processGameTurn(fieldLocal) {
 		if (isGameEnded) return;
-		const isFieldFull = field.every((value) => value !== '');
+		const isFieldFull = fieldLocal.every((value) => value !== '');
 		const isCurrentPlayerWinner = WIN_PATTERNS.some((indexes) =>
-			indexes.every((value) => field[value] === currentPlayer),
+			indexes.every((value) => fieldLocal[value] === currentPlayer),
 		);
 
 		if (isCurrentPlayerWinner) {
@@ -57,10 +57,10 @@ export const Game = () => {
 		setCurrentPlayer((prev) => (prev === 'X' ? 'O' : 'X'));
 	}
 
-	useEffect(() => {
-		if (field.every((value) => value === '')) return;
-		processGameTurn();
-	}, [field]);
+	// useEffect(() => {
+	// 	if (field.every((value) => value === '')) return;
+	// 	processGameTurn();
+	// }, [field]);
 
 	const onClickButton = (e) => {
 		const index = Number(e.target.dataset.index);
@@ -70,6 +70,12 @@ export const Game = () => {
 			`${currentPlayer}`,
 			...prev.slice(index + 1, 9),
 		]);
+		const fieldLocal = [
+			...field.slice(0, index),
+			`${currentPlayer}`,
+			...field.slice(index + 1, 9),
+		];
+		processGameTurn(fieldLocal);
 	};
 
 	return (
