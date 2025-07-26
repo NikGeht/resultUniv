@@ -1,4 +1,5 @@
 import { FormField } from '../FormField/FormField.jsx';
+import { useRef, useEffect } from 'react';
 
 export const Form = ({
 	handleSubmit,
@@ -7,7 +8,18 @@ export const Form = ({
 	emailError,
 	passwordError,
 	confirmPasswordError,
+	allFieldFilled,
 }) => {
+	const isDisabled = emailError || passwordError || confirmPasswordError;
+
+	const submitButtonRef = useRef(null);
+
+	useEffect(() => {
+		if (!isDisabled && submitButtonRef.current && allFieldFilled) {
+			submitButtonRef.current.focus();
+		}
+	}, [isDisabled, allFieldFilled]);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='form'>
 			<FormField
@@ -32,9 +44,10 @@ export const Form = ({
 				placeholder='Введите повторно пароль'
 			/>
 			<button
+				ref={submitButtonRef}
 				type='submit'
 				className='form__button'
-				disabled={emailError || passwordError || confirmPasswordError}
+				disabled={isDisabled}
 			>
 				Отправить
 			</button>
