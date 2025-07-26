@@ -33,28 +33,6 @@
 		align-items: stretch;
 		margin-top: 0;
 
-		&__item {
-			font-size: 16px;
-			color: #222;
-			height: 48px;
-			border-radius: 12px;
-			border: 1px solid #e5e7eb;
-			padding: 0 16px;
-			background-color: #f7f7f7;
-			transition: border-color 0.2s, box-shadow 0.2s;
-
-			&:focus {
-				border-color: #57b846;
-				box-shadow: 0 0 0 2px rgba(87, 184, 70, 0.15);
-				outline: none;
-			}
-		}
-
-		&__error {
-			font-size: 14px;
-			color: #ff0000;
-		}
-
 		&__button {
 			font-size: 16px;
 			color: #fff;
@@ -78,5 +56,3 @@
 		}
 	}
 }
-
-
