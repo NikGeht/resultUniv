@@ -12,6 +12,17 @@ function App() {
 			.catch((error) => console.error('Не удалось получить задачи:', error));
 	}, []);
 
+	const handleCheckBoxClick = (e) => {
+		const todoId = e.target.parentElement.dataset.id;
+		const newTodos = todos.map((todo) => {
+			if (todo.id === Number(todoId)) {
+				todo.completed = !todo.completed;
+			}
+			return todo;
+		});
+		setTodos(newTodos);
+	};
+
 	const filteredTodos = todos.filter((todo) =>
 		todo.title.toLowerCase().includes(search.toLowerCase())
 	);
@@ -31,6 +42,7 @@ function App() {
 					<ul>
 						{filteredTodos.map((todo) => (
 							<li
+								data-id={todo.id}
 								key={todo.id}
 								className={`todos__item ${todo.completed ? 'completed' : ''}`}
 							>
@@ -39,6 +51,7 @@ function App() {
 									type='checkbox'
 									className='todos__item__checkbox'
 									checked={todo.completed}
+									onChange={handleCheckBoxClick}
 								/>
 							</li>
 						))}
