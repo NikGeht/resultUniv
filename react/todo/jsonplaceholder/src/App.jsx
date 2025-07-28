@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
+import { TodosList } from './components/TodosList/TodosList';
+import { TodosHead } from './components/TodosHead/TodosHead';
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -22,7 +24,9 @@ function App() {
 		});
 		setTodos(newTodos);
 	};
-
+	const searchHandler = (e) => {
+		setSearch(e.target.value);
+	};
 	const filteredTodos = todos.filter((todo) =>
 		todo.title.toLowerCase().includes(search.toLowerCase())
 	);
@@ -31,31 +35,15 @@ function App() {
 		<>
 			<div className='todo-container'>
 				<div className='todos'>
-					<h1 className='todos__header'>Задачи</h1>
-					<input
-						type='text'
-						placeholder='Поиск...'
-						className='todos__search'
-						value={search}
-						onChange={(e) => setSearch(e.target.value)}
-					></input>
-					<ul>
-						{filteredTodos.map((todo) => (
-							<li
-								data-id={todo.id}
-								key={todo.id}
-								className={`todos__item ${todo.completed ? 'completed' : ''}`}
-							>
-								<span className='todos__item__title'>{todo.title}</span>
-								<input
-									type='checkbox'
-									className='todos__item__checkbox'
-									checked={todo.completed}
-									onChange={handleCheckBoxClick}
-								/>
-							</li>
-						))}
-					</ul>
+					<TodosHead
+						search={search}
+						searchHandler={searchHandler}
+						headerText='Задачи'
+					/>
+					<TodosList
+						filteredTodos={filteredTodos}
+						handleCheckBoxClick={handleCheckBoxClick}
+					/>
 				</div>
 			</div>
 		</>
