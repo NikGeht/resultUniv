@@ -9,7 +9,8 @@ import { fetchTodos, updateTodo, deleteTodo, createTodo } from './utils/api';
 
 function App() {
 	const { getState, setState } = useStore();
-	const { todos, refreshTodos, isModalOpen, search, searchFilter } = getState();
+	const { todos, refreshTodos, isModalOpen, search, searchFilter, sort } =
+		getState();
 	const timeoutRef = useRef(null);
 
 	useEffect(() => {
@@ -82,9 +83,25 @@ function App() {
 			setState('searchFilter', value);
 		}, 500);
 	};
-	const filteredTodos = todos.filter((todo) =>
-		todo.title.toLowerCase().includes(searchFilter.toLowerCase())
-	);
+
+	const handlerSort = () => {
+		if (sort === '') {
+			setState('sort', 'asc');
+		} else {
+			setState('sort', '');
+		}
+	};
+
+	const filteredTodos = todos
+		.filter((todo) =>
+			todo.title.toLowerCase().includes(searchFilter.toLowerCase())
+		)
+		.sort((a, b) => {
+			if (sort === 'asc') {
+				return a.title.localeCompare(b.title);
+			}
+			return 0;
+		});
 
 	const handlerToggleModal = () => {
 		setState('isModalOpen', !isModalOpen);
@@ -111,7 +128,11 @@ function App() {
 						handleCheckBoxClick={handleCheckBoxClick}
 						handleDeleteTodo={handleDeleteTodo}
 					/>
-					<TodosFooter handlerToggleModal={handlerToggleModal} />
+					<TodosFooter
+						handlerToggleModal={handlerToggleModal}
+						handlerSort={handlerSort}
+						sort={sort}
+					/>
 				</div>
 			</div>
 		</>
