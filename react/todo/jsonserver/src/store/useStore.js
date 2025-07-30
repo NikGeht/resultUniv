@@ -7,6 +7,7 @@ export const useStore = () => {
 		searchFilter: '',
 		isModalOpen: false,
 		refreshTodos: false,
+		sort: '',
 	});
 
 	const getState = () => {
