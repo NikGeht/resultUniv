@@ -64,15 +64,15 @@ export const TaskPage = ({ todos, handleUpdateTodo, handleDeleteTodo }) => {
 				className='modalWindow__form'
 				onSubmit={(e) => handlerSubmit(e, id)}
 			>
-				<input
+				<textarea
 					ref={inputRef}
 					placeholder='Введите название задачи'
 					className='form__input'
 					name='title'
-					type='text'
+					type='textarea'
 					value={title}
 					onChange={handlerInput}
-				></input>
+				></textarea>
 				{error && <div className='input__error'>{error}</div>}
 				<select
 					className='form__select'

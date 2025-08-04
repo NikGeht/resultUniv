@@ -44,15 +44,15 @@ export const ModalWindow = ({ handlerToggleModal, requestAddTodo }) => {
 	return (
 		<div className='modalWindow'>
 			<form className='modalWindow__form' onSubmit={handlerSubmit}>
-				<input
+				<textarea
 					ref={inputRef}
 					placeholder='Введите название задачи'
 					className='form__input'
 					name='title'
-					type='text'
+					type='textarea'
 					value={title}
 					onChange={handlerInput}
-				></input>
+				></textarea>
 				{error && <div className='input__error'>{error}</div>}
 
 				<div className='form_buttons'>
